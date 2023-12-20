@@ -1,10 +1,12 @@
+import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import "../../../componentsCSS/Appointments/SeeAppointmentsAvailable/SeeAppointmentsAvailable.css";
 import { CartContext } from "../../context/context";
 export function SeeAppoitmentsAvailable() {
   const { id } = useParams();
-  const { token } = useContext(CartContext);
+  const { token, userId } = useContext(CartContext);
   const [appointmentsAvailable, setAppointmentsAvailable] = useState([]);
   const [message, setMessage] = useState(null);
   useEffect(() => {
@@ -21,6 +23,52 @@ export function SeeAppoitmentsAvailable() {
       })
       .catch((err) => console.log(err));
   }, [id, token]);
+  const appointmentId = appointmentsAvailable.map(
+    (appointment) => appointment._id
+  );
+  const requestData = {
+    userId: userId,
+    appointmentId: appointmentId,
+  };
+  const handleClickReserveAppointment = async () => {
+    const response = await fetch(
+      "http://localhost:5000/api/appointment/reserve-appointment",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token,
+        },
+        body: JSON.stringify(requestData),
+      }
+    );
+    if (response.ok) {
+      setAppointmentsAvailable((prevAppointments) =>
+        prevAppointments.map((appointment) =>
+          appointment._id === requestData.appointmentId
+            ? { ...appointment, status: "reserved" }
+            : appointment
+        )
+      );
+      toast.success("Reserve Successfully", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    } else {
+      toast.error("Failed to Reserve Appointment", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
 
   return (
     <>
@@ -34,15 +82,14 @@ export function SeeAppoitmentsAvailable() {
           </div>
         </>
       ))}
-
       <div>
         {message ? (
           <h1 className="appointments-message">{message}</h1>
         ) : (
           <article className="appointments-available">
-            {appointmentsAvailable.map((appointment) => (
+            {appointmentsAvailable.map((appointment, index) => (
               <>
-                <div key={appointment.id}>
+                <div key={`${appointment.id}-${index}`}>
                   <div>
                     <h2 className="appointment-status">
                       Status: <strong>{appointment.status}</strong>
@@ -53,13 +100,20 @@ export function SeeAppoitmentsAvailable() {
                       Date: <strong>{appointment.date}</strong>
                     </h2>
                   </div>
+                  <Button
+                    color="white"
+                    component={Link}
+                    onClick={handleClickReserveAppointment}
+                  >
+                    Reserve Appointment
+                  </Button>
                 </div>
               </>
             ))}
           </article>
         )}
       </div>
-      <div></div>
+      <ToastContainer />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { Button, Container, TextField } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "../../../componentsCSS/User/Signup/Signup.css";
 export function Signup() {
   const [formData, setFormData] = useState({
     name: "",
@@ -25,49 +26,20 @@ export function Signup() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
+  const handleClickLogin = () => {
+    navigate("/login");
+  };
   return (
     <>
-      {/* <form action="" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleInputChange}
+      <div className="logo-img">
+        <img
+          src="https://res.cloudinary.com/dn2vrx9eu/image/upload/v1703090010/Doctors-logos_transparent_ktfpet.png"
+          alt=""
         />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          value={formData.lastName}
-          onChange={handleInputChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleInputChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="role"
-          placeholder="Role"
-          value={formData.role}
-          onChange={handleInputChange}
-        />
-        <div>
-          <button type="submit">Signup</button>
-        </div>
-      </form> */}
+      </div>
+      <div className="title-signup-login">
+        <h1>Signup</h1>
+      </div>
       <Container>
         <form action="" onSubmit={handleSubmit}>
           <TextField
@@ -79,6 +51,7 @@ export function Signup() {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
+            className="input"
           />
           <TextField
             label="Last Name"
@@ -89,6 +62,7 @@ export function Signup() {
             name="lastName"
             value={formData.lastName}
             onChange={handleInputChange}
+            className="input"
           />
           <TextField
             label="Email"
@@ -99,6 +73,7 @@ export function Signup() {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
+            className="input"
           />
           <TextField
             label="Password"
@@ -109,6 +84,7 @@ export function Signup() {
             name="password"
             value={formData.password}
             onChange={handleInputChange}
+            className="input"
           />
           <TextField
             label="Role"
@@ -119,9 +95,17 @@ export function Signup() {
             name="role"
             value={formData.role}
             onChange={handleInputChange}
+            className="input"
           />
-          <div>
+          <div className="btn-login-signup">
             <Button type="submit">Signup</Button>
+            <Button
+              component={Link}
+              className="question-already-account"
+              to="/login"
+            >
+              Do you have already account?
+            </Button>
           </div>
         </form>
       </Container>

@@ -6,12 +6,22 @@
   justify-content: center;
   font-family: "Raleway", sans-serif;
   text-decoration: underline;
+  color: white;
 }
 .doctors {
   display: grid;
   grid-template-columns: repeat(3, 33.3%);
   text-align: center;
   font-family: "Dosis", sans-serif;
+  color: white;
+}
+.doctors a {
+  color: #e49660;
+  border: 1px solid #e49660;
+}
+.doctors a:hover {
+  background-color: rgba(255, 255, 255, 0.082);
+  transition: 0.5s;
 }
 .doctors h1 {
   font-weight: 400;

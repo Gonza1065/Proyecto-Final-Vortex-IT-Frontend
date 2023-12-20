@@ -3,6 +3,7 @@
 .appointments-message {
   text-align: center;
   font-family: "Raleway", sans-serif;
+  color: white;
 }
 .title-appointments-available {
   text-align: center;
@@ -11,22 +12,30 @@
 }
 .title-appointments-available h1 {
   font-weight: 300;
+  color: white;
 }
 .subtitle-specialty {
   text-align: center;
   font-family: "Raleway", sans-serif;
+  color: white;
 }
 .appointments-available {
   display: grid;
   grid-template-columns: repeat(3, 33.3%);
   text-align: center;
+  color: white;
+}
+.appointments-available a {
+  color: white;
 }
 .appointment-status {
   font-family: "Raleway", sans-serif;
   font-weight: 300;
+  color: white;
 }
 .appointment-status strong {
   font-weight: 600;
+  color: white;
 }
 .appointment-date {
   font-family: "Raleway", sans-serif;

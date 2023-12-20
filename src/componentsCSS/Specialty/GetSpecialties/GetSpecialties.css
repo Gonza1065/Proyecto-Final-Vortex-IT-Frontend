@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+
+.title-specialties {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  text-decoration: underline;
+}
+.specialties {
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+  text-align: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
+}
+.specialties h1 {
+  font-weight: 300;
+  border: 1px solid #ae4220;
+  margin: 30px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.specialties h1:hover {
+  background-color: rgba(240, 248, 255, 0.055);
+  transition: 0.5s;
+}

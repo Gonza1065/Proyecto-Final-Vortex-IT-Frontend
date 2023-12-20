@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+.title-update-doctor {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  text-decoration: underline;
+}
+.btn-update button {
+  color: #e49660;
+  border: 1px solid #e49660;
+}
+.btn-update button:hover {
+  background-color: rgba(255, 255, 255, 0.082);
+  transition: 0.5s;
+}

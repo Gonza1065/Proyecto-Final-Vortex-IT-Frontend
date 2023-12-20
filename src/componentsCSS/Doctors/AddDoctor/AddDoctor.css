@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
-.header-nav-bar {
-  background-color: #64221f;
+
+.title-add-doctor {
   display: flex;
   justify-content: center;
-}
-.link-nav-bar {
-  font-size: 10px;
-  padding: 0;
-  margin: 5px;
+  color: white;
   font-family: "Raleway", sans-serif;
+}
+.btn-create button {
+  color: #e49660;
+  border: 1px solid #e49660;
 }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../../componentsCSS/Doctors/GetDoctors/GetDoctors.css";
 import { CartContext } from "../../context/context";
 export function GetDoctors() {
-  const { token } = useContext(CartContext);
+  const { token, role } = useContext(CartContext);
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
@@ -33,9 +33,16 @@ export function GetDoctors() {
             <h3 className="doctor-specialty">
               <strong>{doctor.specialty.specialty}</strong>
             </h3>
-            <Button to={`/see-appointments/${doctor._id}`} component={Link}>
-              See Appointments Available
-            </Button>
+            {role === "patient" && (
+              <Button to={`/see-appointments/${doctor._id}`} component={Link}>
+                See Appointments Available
+              </Button>
+            )}
+            {role === "admin" && (
+              <Button to={`/update-doctor/${doctor._id}`} component={Link}>
+                Update Doctor
+              </Button>
+            )}
           </div>
         ))}
       </article>

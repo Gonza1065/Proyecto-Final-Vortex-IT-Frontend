@@ -1,9 +1,10 @@
 import { Button, Container, TextField } from "@mui/material";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../../../componentsCSS/User/Login/Login.css";
 export function Login() {
   const [formData, setFormData] = useState({
     email: "",
@@ -20,10 +21,11 @@ export function Login() {
     });
     if (response.ok) {
       const data = await response.json();
-      const { role } = data.existingUser;
+      const { role, _id } = data.existingUser;
       const { token } = data;
       Cookies.set("token", token);
       Cookies.set("role", role);
+      Cookies.set("id", _id);
       navigate("/");
       toast.success("Login Successfully!", {
         position: "top-right",
@@ -43,7 +45,16 @@ export function Login() {
   };
   return (
     <>
-      <Container>
+      <div className="logo-img">
+        <img
+          src="https://res.cloudinary.com/dn2vrx9eu/image/upload/v1703090010/Doctors-logos_transparent_ktfpet.png"
+          alt=""
+        />
+      </div>
+      <div className="title-signup-login">
+        <h1>Login</h1>
+      </div>
+      <Container className="container-form">
         <form action="" onSubmit={handleSubmit}>
           <TextField
             label="Email"
@@ -54,6 +65,7 @@ export function Login() {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
+            className="input"
           />
           <TextField
             label="Password"
@@ -64,9 +76,17 @@ export function Login() {
             name="password"
             value={formData.password}
             onChange={handleInputChange}
+            className="input"
           />
-          <div>
+          <div className="btn-login-signup">
             <Button type="submit">Login</Button>
+            <Button
+              component={Link}
+              className="question-already-account"
+              to="/signup"
+            >
+              Dont you have already account?
+            </Button>
           </div>
         </form>
         <ToastContainer />

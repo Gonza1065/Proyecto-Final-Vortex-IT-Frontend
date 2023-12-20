@@ -97,14 +97,6 @@ export function NavBar() {
               <Button
                 color="inherit"
                 component={Link}
-                to="/reserve-appointment"
-                className="link-nav-bar"
-              >
-                Reserve Appointment
-              </Button>
-              <Button
-                color="inherit"
-                component={Link}
                 to="/cancel-appointment"
                 className="link-nav-bar"
               >
