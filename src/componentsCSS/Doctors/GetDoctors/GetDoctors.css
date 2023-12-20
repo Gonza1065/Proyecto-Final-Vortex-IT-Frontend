@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+.title-doctors-registered {
+  display: flex;
+  justify-content: center;
+  font-family: "Raleway", sans-serif;
+  text-decoration: underline;
+}
+.doctors {
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+  text-align: center;
+  font-family: "Dosis", sans-serif;
+}
+.doctors h1 {
+  font-weight: 400;
+}
+.doctor-specialty strong {
+  font-weight: 700;
+}
