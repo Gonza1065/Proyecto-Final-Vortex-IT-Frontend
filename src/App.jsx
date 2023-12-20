@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import { GetAppointmentsByPatient } from "./components/Appointments/GetAppointmentsByPatient/GetAppointmentsByPatient";
 import { SeeAppoitmentsAvailable } from "./components/Appointments/SeeAppointmentsAvailable/SeeAppointmentsAvailable";
+import { SeeAppointmentsByPatient } from "./components/Appointments/SeeAppointmentsByPatient/SeeAppointmentsByPatient";
 import { AddDoctor } from "./components/Doctors/AddDoctor/AddDoctor";
 import { GetDoctors } from "./components/Doctors/GetDoctors/GetDoctors";
 import { UpdateDoctor } from "./components/Doctors/UpdateDoctor/UpdateDoctor";
@@ -32,6 +34,14 @@ function App() {
               <Route path="/add-doctor" element={<AddDoctor />} />
               <Route path="/update-doctor/:id" element={<UpdateDoctor />} />
               <Route path="/get-specialties" element={<GetSpecialties />} />
+              <Route
+                path="/get-appointments-by-patient"
+                element={<GetAppointmentsByPatient />}
+              />
+              <Route
+                path="/see-appointments-by-patient/:id"
+                element={<SeeAppointmentsByPatient />}
+              />
             </>
           )}
         </Routes>

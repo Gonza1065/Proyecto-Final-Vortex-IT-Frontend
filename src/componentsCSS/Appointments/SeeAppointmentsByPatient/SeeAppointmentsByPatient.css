@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+.title-appointments-by-patient {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  text-decoration: underline;
+}
+.appointments-by-patient {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  text-align: center;
+  color: white;
+}
+.patient {
+  margin: 10px;
+}
+.appointments-by-patient h3 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+}
+.error-message-appointments-by-patient {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  color: white;
+}
+.error-message-appointments-by-patient h1 {
+  font-weight: 300;
+}

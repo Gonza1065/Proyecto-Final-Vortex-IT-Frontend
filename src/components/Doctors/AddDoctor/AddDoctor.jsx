@@ -1,6 +1,6 @@
 import { Button, Container, TextField } from "@mui/material";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../../componentsCSS/Doctors/AddDoctor/AddDoctor.css";
 import { CartContext } from "../../context/context";
 export function AddDoctor() {
@@ -82,7 +82,7 @@ export function AddDoctor() {
             className="input"
           />
           <div className="btn-create">
-            <Button type="submit">Add Doctor</Button>
+            <Button type="submit" to="/get-doctors" component={Link}>Add Doctor</Button>
           </div>
         </form>
       </Container>

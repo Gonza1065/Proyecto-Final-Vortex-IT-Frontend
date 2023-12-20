@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+
+.title-patients {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  text-decoration: underline;
+}
+.patients {
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+  text-align: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
+}
+.patient h1 {
+  font-weight: 300;
+}

@@ -14,18 +14,18 @@ export function NavBar() {
               <Button
                 color="inherit"
                 component={Link}
-                to="/add-doctor"
+                to="/get-doctors"
                 className="link-nav-bar"
               >
-                Add Doctor
+                Get Doctors
               </Button>
               <Button
                 color="inherit"
                 component={Link}
-                to="/updated-doctor/:id"
+                to="/add-doctor"
                 className="link-nav-bar"
               >
-                Updated Doctor
+                Add Doctor
               </Button>
               <Button
                 color="inherit"
