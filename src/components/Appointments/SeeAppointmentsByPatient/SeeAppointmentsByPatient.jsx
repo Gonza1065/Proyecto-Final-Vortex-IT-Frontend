@@ -46,12 +46,12 @@ export function SeeAppointmentsByPatient() {
               <h3>
                 Doctor:{" "}
                 <strong>
-                  {patient.doctorId.lastName}, {patient.doctorId.name}
+                  {patient.doctor.lastName}, {patient.doctor.name}
                 </strong>
               </h3>
               <h3>
                 Specialty:{" "}
-                <strong>{patient.doctorId.specialty.specialty}</strong>
+                <strong>{patient.doctor.specialty.specialty}</strong>
               </h3>
             </div>
           </>

@@ -6,7 +6,6 @@
   font-family: "Raleway", sans-serif;
   text-decoration: underline;
 }
-
 .logo-img img {
   height: 250px;
   position: absolute;
@@ -31,4 +30,12 @@
 .btn-login-signup button:hover {
   background-color: rgba(255, 255, 255, 0.082);
   transition: 0.5s;
+}
+.login-message {
+  text-align: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
+}
+.login-message h1 {
+  font-weight: 300;
 }

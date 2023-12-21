@@ -1,13 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
-
-.question-already-account {
-  color: #fc6900;
+.title-add-appointment {
+  text-align: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  text-decoration: underline;
 }
-.signup-message {
+.add-appointment-message {
   text-align: center;
   color: white;
   font-family: "Raleway", sans-serif;
 }
-.signup-message h1 {
+.add-appointment-message h1 {
   font-weight: 300;
 }

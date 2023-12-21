@@ -10,8 +10,8 @@ export function Login() {
     email: "",
     password: "",
   });
+  const [message, setMessage] = useState(null);
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5000/api/users/login", {
@@ -36,7 +36,9 @@ export function Login() {
         draggable: true,
       });
     } else {
-      console.log(response);
+      const data = await response.json();
+      const { message } = data;
+      setMessage(message);
     }
   };
   const handleInputChange = (e) => {
@@ -85,9 +87,21 @@ export function Login() {
               className="question-already-account"
               to="/signup"
             >
-              Dont you have already account?
+              You don´t have already an account?
+            </Button>
+            <Button
+              component={Link}
+              className="question-already-account"
+              to="/forgot-password"
+            >
+              Did you forget the password?
             </Button>
           </div>
+          {message && (
+            <div className="login-message">
+              <h1>{message}</h1>
+            </div>
+          )}
         </form>
         <ToastContainer />
       </Container>

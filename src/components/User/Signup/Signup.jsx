@@ -10,6 +10,7 @@ export function Signup() {
     password: "",
     role: "",
   });
+  const [message, setMessage] = useState(null);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,14 +21,15 @@ export function Signup() {
     });
     if (response.ok) {
       navigate("/login");
+    } else {
+      const data = await response.json();
+      const { message } = data;
+      setMessage(message);
     }
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
-  const handleClickLogin = () => {
-    navigate("/login");
   };
   return (
     <>
@@ -107,6 +109,11 @@ export function Signup() {
               Do you have already account?
             </Button>
           </div>
+          {message && (
+            <div className="signup-message">
+              <h1>{message}</h1>
+            </div>
+          )}
         </form>
       </Container>
     </>

@@ -29,3 +29,11 @@
 .doctor-specialty strong {
   font-weight: 700;
 }
+.get-doctors-message {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  color: white;
+}
+.get-doctors-message h1 {
+  font-family: 200;
+}

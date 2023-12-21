@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../componentsCSS/NavBar/NavBar.css";
 import { CartContext } from "../context/context";
 export function NavBar() {
-  const { role } = useContext(CartContext);
+  const { role, logout } = useContext(CartContext);
   return (
     <>
       <AppBar>
@@ -54,7 +54,7 @@ export function NavBar() {
               <Button
                 color="inherit"
                 component={Link}
-                to="/get-appointments-by-doctor/:id"
+                to="/get-appointments-by-doctor"
                 className="link-nav-bar"
               >
                 Get Appointments By Doctor
@@ -74,6 +74,15 @@ export function NavBar() {
                 className="link-nav-bar"
               >
                 History Cancelations By Patient
+              </Button>
+              <Button
+                color="inherit"
+                component={Link}
+                className="link-nav-bar"
+                onClick={logout}
+                to="/login"
+              >
+                Logout
               </Button>
             </>
           ) : role === "patient" ? (
@@ -101,6 +110,15 @@ export function NavBar() {
                 className="link-nav-bar"
               >
                 Cancel Appointment
+              </Button>
+              <Button
+                color="inherit"
+                component={Link}
+                className="link-nav-bar"
+                onClick={logout}
+                to="/login"
+              >
+                Logout
               </Button>
             </>
           ) : null}

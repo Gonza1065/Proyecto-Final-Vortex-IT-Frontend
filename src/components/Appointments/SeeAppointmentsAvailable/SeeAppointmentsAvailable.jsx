@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../../../componentsCSS/Appointments/SeeAppointmentsAvailable/SeeAppointmentsAvailable.css";
 import { CartContext } from "../../context/context";
@@ -9,6 +9,7 @@ export function SeeAppoitmentsAvailable() {
   const { token, userId } = useContext(CartContext);
   const [appointmentsAvailable, setAppointmentsAvailable] = useState([]);
   const [message, setMessage] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`http://localhost:5000/api/doctors/${id}`, {
       headers: { "Content-Type": "application/json", "x-access-token": token },
@@ -43,13 +44,9 @@ export function SeeAppoitmentsAvailable() {
       }
     );
     if (response.ok) {
-      setAppointmentsAvailable((prevAppointments) =>
-        prevAppointments.map((appointment) =>
-          appointment._id === requestData.appointmentId
-            ? { ...appointment, status: "reserved" }
-            : appointment
-        )
-      );
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
       toast.success("Reserve Successfully", {
         position: "top-right",
         autoClose: 3000,
@@ -59,6 +56,9 @@ export function SeeAppoitmentsAvailable() {
         draggable: true,
       });
     } else {
+      const data = await response.json();
+      const { message } = data;
+      setMessage(message);
       toast.error("Failed to Reserve Appointment", {
         position: "top-right",
         autoClose: 3000,
@@ -77,8 +77,8 @@ export function SeeAppoitmentsAvailable() {
       </div>
       {appointmentsAvailable.map((appointment) => (
         <>
-          <div className="subtitle-specialty" key={appointment.doctorId._id}>
-            <h1>{appointment.doctorId.specialty.specialty}</h1>
+          <div className="subtitle-specialty" key={appointment.doctor._id}>
+            <h1>{appointment.doctor.specialty.specialty}</h1>
           </div>
         </>
       ))}
@@ -87,9 +87,9 @@ export function SeeAppoitmentsAvailable() {
           <h1 className="appointments-message">{message}</h1>
         ) : (
           <article className="appointments-available">
-            {appointmentsAvailable.map((appointment, index) => (
+            {appointmentsAvailable.map((appointment) => (
               <>
-                <div key={`${appointment.id}-${index}`}>
+                <div key={`${appointment.id}`}>
                   <div>
                     <h2 className="appointment-status">
                       Status: <strong>{appointment.status}</strong>
@@ -101,7 +101,6 @@ export function SeeAppoitmentsAvailable() {
                     </h2>
                   </div>
                   <Button
-                    color="white"
                     component={Link}
                     onClick={handleClickReserveAppointment}
                   >

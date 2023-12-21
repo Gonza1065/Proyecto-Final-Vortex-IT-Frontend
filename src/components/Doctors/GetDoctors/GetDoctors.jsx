@@ -6,15 +6,18 @@ import { CartContext } from "../../context/context";
 export function GetDoctors() {
   const { token, role } = useContext(CartContext);
   const [doctors, setDoctors] = useState([]);
-
+  const [message, setMessage] = useState(null);
   useEffect(() => {
     fetch("http://localhost:5000/api/doctors", {
       headers: { "Content-Type": "application/json", "x-access-token": token },
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        setDoctors(data);
+        if (data.message) {
+          setMessage(data.message);
+        } else {
+          setDoctors(data);
+        }
       })
       .catch((err) => console.log(err));
   }, [token]);
@@ -46,6 +49,11 @@ export function GetDoctors() {
           </div>
         ))}
       </article>
+      {message && (
+        <div className="get-doctors-message">
+          <h1>{message}</h1>
+        </div>
+      )}
     </>
   );
 }
