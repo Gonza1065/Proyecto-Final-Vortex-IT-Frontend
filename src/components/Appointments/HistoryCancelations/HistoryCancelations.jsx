@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../../componentsCSS/Appointments/GetAppointmentsByPatient/GetAppointmentsByPatient.css";
+import "../../../componentsCSS/Appointments/HistoryCancelations/HistoryCancelations.css";
 import { CartContext } from "../../context/context";
-export function GetAppointmentsByPatient() {
+export function HistoryCancelations() {
   const [patients, setPatients] = useState([]);
   const { token } = useContext(CartContext);
   useEffect(() => {
@@ -18,28 +18,28 @@ export function GetAppointmentsByPatient() {
   }, [token]);
   return (
     <>
-      <div className="title-patients">
-        <h1>Patients</h1>
+      <div className="title-history-cancelations">
+        <h1>History Cancelations By Patients</h1>
       </div>
-      <article className="patients">
+      <section className="patients">
         {patients.map((patient) => (
           <>
             <div className="patient">
-              <h1 key={patient._id}>
+              <h1>
                 {patient.lastName}, {patient.name}
               </h1>
               <div className="see-appointments">
                 <Button
-                  to={`/see-appointments-by-patient/${patient._id}`}
+                  to={`/cancelations-by-patient/${patient._id}`}
                   component={Link}
                 >
-                  See Appointments
+                  See Appointments cancelled
                 </Button>
               </div>
             </div>
           </>
         ))}
-      </article>
+      </section>
     </>
   );
 }

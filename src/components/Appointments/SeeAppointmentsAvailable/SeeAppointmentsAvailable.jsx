@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../../../componentsCSS/Appointments/SeeAppointmentsAvailable/SeeAppointmentsAvailable.css";
 import { CartContext } from "../../context/context";
@@ -9,7 +9,6 @@ export function SeeAppoitmentsAvailable() {
   const { token, userId } = useContext(CartContext);
   const [appointmentsAvailable, setAppointmentsAvailable] = useState([]);
   const [message, setMessage] = useState(null);
-  const navigate = useNavigate();
   useEffect(() => {
     fetch(`http://localhost:5000/api/doctors/${id}`, {
       headers: { "Content-Type": "application/json", "x-access-token": token },
@@ -44,9 +43,6 @@ export function SeeAppoitmentsAvailable() {
       }
     );
     if (response.ok) {
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
       toast.success("Reserve Successfully", {
         position: "top-right",
         autoClose: 3000,
@@ -75,13 +71,7 @@ export function SeeAppoitmentsAvailable() {
       <div className="title-appointments-available">
         <h1>Appointments Available</h1>
       </div>
-      {appointmentsAvailable.map((appointment) => (
-        <>
-          <div className="subtitle-specialty" key={appointment.doctor._id}>
-            <h1>{appointment.doctor.specialty.specialty}</h1>
-          </div>
-        </>
-      ))}
+
       <div>
         {message ? (
           <h1 className="appointments-message">{message}</h1>
@@ -97,7 +87,11 @@ export function SeeAppoitmentsAvailable() {
                   </div>
                   <div>
                     <h2 className="appointment-date">
-                      Date: <strong>{appointment.date}</strong>
+                      Date:{" "}
+                      <strong>
+                        {appointment.day}/{appointment.month}
+                      </strong>
+                      <strong>, {appointment.date}</strong>
                     </h2>
                   </div>
                   <Button

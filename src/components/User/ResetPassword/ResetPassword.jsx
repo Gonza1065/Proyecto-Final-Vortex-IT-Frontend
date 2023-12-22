@@ -1,7 +1,6 @@
 import { Button, Container, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import "../../../componentsCSS/User/ResetPassword/ResetPassword.css";
 export function ResetPassword() {
   const { token } = useParams();
@@ -13,6 +12,10 @@ export function ResetPassword() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.newPassword || !formData.repeatNewPassword) {
+      setMessage("All fields are required");
+      return;
+    }
     const response = await fetch(
       `http://localhost:5000/api/users/reset-password/${token}`,
       {
@@ -20,32 +23,14 @@ export function ResetPassword() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message === "Password reset successfully") {
-          setMessage(data.message);
-          toast.success(message, {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
-          navigate("/login");
-        } else {
-          toast.error(message, {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
-        }
-      })
-      .catch((err) => console.log(err));
+    );
+    if (response.ok) {
+      navigate("/login");
+    } else {
+      const data = await response.json();
+      const { message } = data;
+      setMessage(message);
+    }
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target;

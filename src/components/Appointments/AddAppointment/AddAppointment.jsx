@@ -5,14 +5,20 @@ import "../../../componentsCSS/Appointments/AddAppointment/AddAppointment.css";
 import { CartContext } from "../../context/context";
 export function AddAppointment() {
   const [formData, setFormData] = useState({
-    doctor: "",
+    doctorSpecialty: "",
     date: "",
+    day: "",
+    month: "",
   });
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
   const { token } = useContext(CartContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.doctorSpecialty || !formData.date) {
+      setMessage("All fields are required");
+      return;
+    }
     try {
       const response = await fetch(
         "http://localhost:5000/api/appointment/add-appointment",
@@ -48,13 +54,13 @@ export function AddAppointment() {
       <Container>
         <form action="" onSubmit={handleSubmit}>
           <TextField
-            label="Doctor"
+            label="Specialty"
             variant="outlined"
             fullWidth
             margin="normal"
             type="text"
-            name="doctor"
-            value={formData.doctor}
+            name="doctorSpecialty"
+            value={formData.doctorSpecialty}
             onChange={handleInputChange}
             className="input"
           />
@@ -66,6 +72,28 @@ export function AddAppointment() {
             type="text"
             name="date"
             value={formData.date}
+            onChange={handleInputChange}
+            className="input"
+          />
+          <TextField
+            label="Day"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type="text"
+            name="day"
+            value={formData.day}
+            onChange={handleInputChange}
+            className="input"
+          />
+          <TextField
+            label="Month"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type="text"
+            name="month"
+            value={formData.month}
             onChange={handleInputChange}
             className="input"
           />

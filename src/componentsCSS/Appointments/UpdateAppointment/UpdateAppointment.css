@@ -1,18 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
-.title-add-appointment {
+
+.title-update-appointment {
   text-align: center;
   color: white;
   font-family: "Raleway", sans-serif;
   text-decoration: underline;
 }
-.title-add-appointment h1 {
+.title-update-appointment h1 {
   font-weight: 300;
 }
-.add-appointment-message {
+.update-appointment-message {
   text-align: center;
   color: white;
   font-family: "Raleway", sans-serif;
 }
-.add-appointment-message h1 {
+.update-appointment-message h1 {
   font-weight: 300;
 }

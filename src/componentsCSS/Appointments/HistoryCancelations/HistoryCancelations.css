@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+
+.title-history-cancelations {
+  color: white;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  text-decoration: underline;
+}
+.title-history-cancelations h1 {
+  font-weight: 300;
+}

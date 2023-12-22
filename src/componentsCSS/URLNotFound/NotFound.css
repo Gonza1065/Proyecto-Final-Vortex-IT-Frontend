@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+.title-not-found {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+}

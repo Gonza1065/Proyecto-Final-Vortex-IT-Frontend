@@ -14,6 +14,16 @@
   color: white;
   font-family: "Raleway", sans-serif;
 }
+.patient {
+  background-color: #310000;
+  margin: 25px;
+  padding: 20px;
+  border-radius: 20px;
+}
 .patient h1 {
   font-weight: 300;
+}
+.see-appointments a {
+  color: #e49660;
+  border: 1px solid #e49660;
 }

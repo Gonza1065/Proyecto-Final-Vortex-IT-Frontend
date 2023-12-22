@@ -41,7 +41,15 @@ export function SeeAppointmentsByPatient() {
                 <strong> {patient.patient.name}</strong>
               </h3>
               <h3>
-                Date: <strong>{patient.date}</strong>
+                Date:{" "}
+                <strong>
+                  {patient.day}/{patient.month}
+                </strong>
+                <strong>, {patient.date}</strong>
+              </h3>
+              <h3>
+                Status:
+                <strong> {patient.status}</strong>
               </h3>
               <h3>
                 Doctor:{" "}
@@ -50,8 +58,7 @@ export function SeeAppointmentsByPatient() {
                 </strong>
               </h3>
               <h3>
-                Specialty:{" "}
-                <strong>{patient.doctor.specialty.specialty}</strong>
+                Specialty: <strong>{patient.doctor.specialty.specialty}</strong>
               </h3>
             </div>
           </>

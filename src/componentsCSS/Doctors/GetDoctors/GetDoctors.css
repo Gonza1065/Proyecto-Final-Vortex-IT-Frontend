@@ -8,6 +8,9 @@
   text-decoration: underline;
   color: white;
 }
+.title-doctors-registered h1 {
+  font-weight: 300;
+}
 .doctors {
   display: grid;
   grid-template-columns: repeat(3, 33.3%);
@@ -26,8 +29,15 @@
 .doctors h1 {
   font-weight: 400;
 }
+.doctor {
+  background-color: #310000;
+  margin: 25px;
+  padding: 20px;
+  border-radius: 20px;
+}
 .doctor-specialty strong {
   font-weight: 700;
+  text-decoration: underline;
 }
 .get-doctors-message {
   text-align: center;

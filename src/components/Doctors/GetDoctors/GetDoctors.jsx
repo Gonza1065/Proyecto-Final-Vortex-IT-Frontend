@@ -29,7 +29,7 @@ export function GetDoctors() {
       </div>
       <article className="doctors">
         {doctors.map((doctor) => (
-          <div key={doctor._id}>
+          <div key={doctor._id} className="doctor">
             <h1>
               {doctor.lastName}, {doctor.name}
             </h1>

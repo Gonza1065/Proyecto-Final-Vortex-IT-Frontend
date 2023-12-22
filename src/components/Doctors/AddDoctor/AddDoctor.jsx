@@ -15,23 +15,29 @@ export function AddDoctor() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.name || !formData.lastName || !formData.specialty) {
+      setMessage("All fields are required");
+      return;
+    }
     try {
-      await fetch("http://localhost:5000/api/doctors/add-doctor", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-access-token": token,
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.message) {
-            setMessage(data.message);
-          }
-          navigate("/");
-        })
-        .catch((err) => console.log(err));
+      const response = await fetch(
+        "http://localhost:5000/api/doctors/add-doctor",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": token,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      if (response.ok) {
+        navigate("/");
+      } else {
+        const data = await response.json();
+        const { message } = data;
+        setMessage(message);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -83,6 +89,11 @@ export function AddDoctor() {
           <div className="btn-create">
             <Button type="submit">Add Doctor</Button>
           </div>
+          {message && (
+            <div className="add-doctor-message">
+              <h1>{message}</h1>
+            </div>
+          )}
         </form>
       </Container>
     </>

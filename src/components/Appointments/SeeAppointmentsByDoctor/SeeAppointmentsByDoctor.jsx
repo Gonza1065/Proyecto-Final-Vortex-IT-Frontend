@@ -1,10 +1,10 @@
+import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../../componentsCSS/Appointments/SeeAppointmentsByDoctor/SeeAppointmentsByDoctor.css";
 import { CartContext } from "../../context/context";
 export function SeeAppointmentsByDoctor() {
   const [appointmentsByDoctor, setAppointmentsByDoctor] = useState([]);
-  //   const [appointmentsReserved, setAppointmentsReserved] = useState([]);
   const [message, setMessage] = useState(null);
   const { id } = useParams();
   const { token } = useContext(CartContext);
@@ -48,47 +48,102 @@ export function SeeAppointmentsByDoctor() {
                 </div>
                 <div className="information-appointment">
                   <h1>
-                    Date: <strong>{appointment.date}</strong> hrs.
+                    Date:{" "}
+                    <strong>
+                      {appointment.day}/{appointment.month}
+                    </strong>
+                    <strong>, {appointment.date}</strong> hrs.
                   </h1>
                   <h1>
                     Status: <strong>{appointment.status}</strong>
                   </h1>
                 </div>
+                <div>
+                  <Button
+                    component={Link}
+                    to={`/update-information/${appointment._id}`}
+                  >
+                    Update Information
+                  </Button>
+                </div>
+              </div>
+            ) : appointment.status === "reserved" ? (
+              <div className="appointment">
+                <div className="information-doctor">
+                  <h1>
+                    Doctor:{" "}
+                    <strong>
+                      {appointment.doctor.lastName}, {appointment.doctor.name}
+                    </strong>
+                  </h1>
+                </div>
+                <div className="information-appointment">
+                  <h1>
+                    Date:{" "}
+                    <strong>
+                      {appointment.day}/{appointment.month}
+                    </strong>
+                    <strong>, {appointment.date}</strong> hrs.
+                  </h1>
+                  <h1>
+                    Status: <strong>{appointment.status}</strong>
+                  </h1>
+                </div>
+                <div className="information-patient">
+                  <h1>
+                    Patient:{" "}
+                    <strong>
+                      {appointment.patient.lastName}, {appointment.patient.name}
+                    </strong>
+                  </h1>
+                </div>
               </div>
             ) : (
-              appointment.status === "reserved" && (
-                <div className="appointment">
-                  <div className="information-doctor">
-                    <h1>
-                      Doctor:{" "}
-                      <strong>
-                        {appointment.doctor.lastName}, {appointment.doctor.name}
-                      </strong>
-                    </h1>
+              appointment.status === "cancelled" && (
+                <>
+                  <div className="appointment">
+                    <div className="information-doctor">
+                      <h1>
+                        Doctor:{" "}
+                        <strong>
+                          {appointment.doctor.lastName},{" "}
+                          {appointment.doctor.name}
+                        </strong>
+                      </h1>
+                    </div>
+                    <div className="information-appointment">
+                      <h1>
+                        Date:{" "}
+                        <strong>
+                          {appointment.day}/{appointment.month}
+                        </strong>
+                        <strong>, {appointment.date}</strong> hrs.
+                      </h1>
+                      <h1>
+                        Status: <strong>{appointment.status}</strong>
+                      </h1>
+                    </div>
+                    <div className="information-patient">
+                      <h1>
+                        Patient:{" "}
+                        <strong>
+                          {appointment.patient.lastName},{" "}
+                          {appointment.patient.name}
+                        </strong>
+                      </h1>
+                    </div>
                   </div>
-                  <div className="information-appointment">
-                    <h1>
-                      Date: <strong>{appointment.date}</strong> hrs.
-                    </h1>
-                    <h1>
-                      Status: <strong>{appointment.status}</strong>
-                    </h1>
-                  </div>
-                  <div className="information-patient">
-                    <h1>
-                      Patient:{" "}
-                      <strong>
-                        {appointment.patient.lastName},{" "}
-                        {appointment.patient.name}
-                      </strong>
-                    </h1>
-                  </div>
-                </div>
+                </>
               )
             )}
           </div>
         ))}
       </article>
+      {message && (
+        <div className="see-appointments-by-doctor-message">
+          <h1>{message}</h1>
+        </div>
+      )}
     </>
   );
 }

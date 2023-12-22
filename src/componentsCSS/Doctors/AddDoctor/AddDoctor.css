@@ -5,8 +5,20 @@
   justify-content: center;
   color: white;
   font-family: "Raleway", sans-serif;
+  text-decoration: underline;
+}
+.title-add-doctor h1 {
+  font-weight: 300;
 }
 .btn-create button {
   color: #e49660;
   border: 1px solid #e49660;
+}
+.add-doctor-message {
+  color: white;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+}
+.add-doctor-message h1 {
+  font-weight: 300;
 }
