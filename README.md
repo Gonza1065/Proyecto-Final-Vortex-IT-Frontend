@@ -53,7 +53,13 @@ npm install
 
 ## Backend
 
-1. **Ejecuta el servidor y la base de datos**
+1. Clona el repositorio del backend:
+
+```bash
+git clone https://github.com/Gonza1065/Proyecto-Final-Vortex-IT
+```
+
+2. **Ejecuta el servidor y la base de datos**
 
 ```bash
 npm start
