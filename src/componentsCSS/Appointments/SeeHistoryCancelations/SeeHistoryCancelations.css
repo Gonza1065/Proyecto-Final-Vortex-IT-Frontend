@@ -5,4 +5,10 @@
   grid-template-columns: repeat(2, 25%);
   color: white;
   font-family: "Raleway", sans-serif;
+  text-align: center;
+}
+.see-history-cancelations-message {
+  text-align: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
 }

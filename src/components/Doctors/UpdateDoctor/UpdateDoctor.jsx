@@ -7,6 +7,7 @@ export function UpdateDoctor() {
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
+    specialty: "",
   });
   const { id } = useParams();
   const { token } = useContext(CartContext);
@@ -25,7 +26,7 @@ export function UpdateDoctor() {
           body: JSON.stringify(formData),
         }
       );
-      if (response.ok) {
+      if (response) {
         navigate("/get-doctors");
       }
     } catch (err) {
@@ -62,6 +63,17 @@ export function UpdateDoctor() {
             type="name"
             name="name"
             value={formData.name}
+            onChange={handleInputChange}
+            className="input"
+          />
+          <TextField
+            label="Specialty"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type="text"
+            name="specialty"
+            value={formData.specialty}
             onChange={handleInputChange}
             className="input"
           />

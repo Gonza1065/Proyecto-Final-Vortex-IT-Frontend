@@ -53,71 +53,30 @@ export function GetAppointments() {
       setMessage(message);
     }
   };
-
   return (
     <>
       <div className="title-get-appointments">
         <h1>Get Appointments</h1>
       </div>
-      <div>
-        <section className="appointments">
-          {appointments.map((appointment) => (
-            <>
-              <div className="information">
-                {appointment.status === "reserved" ? (
-                  <>
-                    <div className="information-appointment">
-                      <h1>
-                        Date:{" "}
-                        <strong>
-                          {appointment.day}/{appointment.month}
-                        </strong>
-                        <strong>, {appointment.date}</strong>
-                      </h1>
-                      <h1>
-                        Status: <strong>{appointment.status}</strong>
-                      </h1>
-                    </div>
-                    <div className="information-patient">
-                      <h1>
-                        Patient:{" "}
-                        <strong>
-                          {appointment.patient.name},{" "}
-                          {appointment.patient.lastName}
-                        </strong>
-                      </h1>
-                    </div>
-                    <div className="information-doctor">
-                      <h1>
-                        Doctor:{" "}
-                        <strong>
-                          {appointment.doctor.name},{" "}
-                          {appointment.doctor.lastName}
-                        </strong>
-                      </h1>
-                      <h1>
-                        Specialty:{" "}
-                        <strong>
-                          {appointment.doctor.specialty.specialty}
-                        </strong>
-                      </h1>
-                      <div>
-                        <Button
-                          onClick={() =>
-                            handleClickCancelAppointment(appointment._id)
-                          }
-                        >
-                          Cancel Appointment
-                        </Button>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  appointment.status === "cancelled" && (
+      <section>
+        {message ? (
+          <div className="appointments-message">
+            <h1>{message}</h1>
+          </div>
+        ) : (
+          <article className="appointments">
+            {appointments.map((appointment) => (
+              <>
+                <div className="information">
+                  {appointment.status === "reserved" ? (
                     <>
                       <div className="information-appointment">
                         <h1>
-                          Date: <strong>{appointment.date}</strong>
+                          Date:{" "}
+                          <strong>
+                            {appointment.day}/{appointment.month}
+                          </strong>
+                          <strong>, {appointment.date}</strong>
                         </h1>
                         <h1>
                           Status: <strong>{appointment.status}</strong>
@@ -146,15 +105,61 @@ export function GetAppointments() {
                             {appointment.doctor.specialty.specialty}
                           </strong>
                         </h1>
+                        <div>
+                          <Button
+                            onClick={() =>
+                              handleClickCancelAppointment(appointment._id)
+                            }
+                          >
+                            Cancel Appointment
+                          </Button>
+                        </div>
                       </div>
                     </>
-                  )
-                )}
-              </div>{" "}
-            </>
-          ))}
-        </section>
-      </div>
+                  ) : (
+                    appointment.status === "cancelled" && (
+                      <>
+                        <div className="information-appointment">
+                          <h1>
+                            Date: <strong>{appointment.date}</strong>
+                          </h1>
+                          <h1>
+                            Status: <strong>{appointment.status}</strong>
+                          </h1>
+                        </div>
+                        <div className="information-patient">
+                          <h1>
+                            Patient:{" "}
+                            <strong>
+                              {appointment.patient.name},{" "}
+                              {appointment.patient.lastName}
+                            </strong>
+                          </h1>
+                        </div>
+                        <div className="information-doctor">
+                          <h1>
+                            Doctor:{" "}
+                            <strong>
+                              {appointment.doctor.name},{" "}
+                              {appointment.doctor.lastName}
+                            </strong>
+                          </h1>
+                          <h1>
+                            Specialty:{" "}
+                            <strong>
+                              {appointment.doctor.specialty.specialty}
+                            </strong>
+                          </h1>
+                        </div>
+                      </>
+                    )
+                  )}
+                </div>{" "}
+              </>
+            ))}
+          </article>
+        )}
+      </section>
     </>
   );
 }

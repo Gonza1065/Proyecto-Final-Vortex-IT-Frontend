@@ -6,6 +6,8 @@ import { CartContext } from "../../context/context";
 export function UpdateAppointment() {
   const [formData, setFormData] = useState({
     date: "",
+    day: "",
+    month: "",
   });
   const [message, setMessage] = useState(null);
   const { id } = useParams();
@@ -13,6 +15,10 @@ export function UpdateAppointment() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.date || !formData.day || !formData.month) {
+      setMessage("All fields are required");
+      return;
+    }
     const response = await fetch(
       `http://localhost:5000/api/appointment/update-appointment/${id}`,
       {
@@ -52,6 +58,28 @@ export function UpdateAppointment() {
             type="text"
             name="date"
             value={formData.date}
+            onChange={handleInputChange}
+            className="input"
+          />
+          <TextField
+            label="Day"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type="text"
+            name="day"
+            value={formData.day}
+            onChange={handleInputChange}
+            className="input"
+          />
+          <TextField
+            label="Month"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type="text"
+            name="month"
+            value={formData.month}
             onChange={handleInputChange}
             className="input"
           />

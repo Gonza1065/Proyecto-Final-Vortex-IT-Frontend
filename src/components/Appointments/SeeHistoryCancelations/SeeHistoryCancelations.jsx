@@ -4,6 +4,7 @@ import "../../../componentsCSS/Appointments/SeeHistoryCancelations/SeeHistoryCan
 import { CartContext } from "../../context/context";
 export function SeeHistoryCancelations() {
   const [appointmentsCancelled, setAppointmentsCancelled] = useState([]);
+  const [message, setMessage] = useState(null);
   const { id } = useParams();
   const { token } = useContext(CartContext);
   useEffect(() => {
@@ -17,12 +18,18 @@ export function SeeHistoryCancelations() {
       }
     )
       .then((res) => res.json())
-      .then((data) => setAppointmentsCancelled(data))
+      .then((data) => {
+        if (data.message) {
+          setMessage(data.message);
+        } else {
+          setAppointmentsCancelled(data);
+        }
+      })
       .catch((err) => console.log(err));
   }, [id, token]);
   return (
     <>
-      <div>
+      <div className="title-history-cancelations">
         <h1>History Cancelations</h1>
       </div>
       <section className="appointments-cancelled">
@@ -30,12 +37,38 @@ export function SeeHistoryCancelations() {
           <>
             <div className="patient">
               <h1>
-                Patient: <strong>{appointment.patient.name}</strong>
+                Patient: <strong>{appointment.patient.lastName}</strong>,{" "}
+                <strong>{appointment.patient.name}</strong>
+              </h1>
+              <h1>
+                Date:{" "}
+                <strong>
+                  {appointment.day}/{appointment.month}, {appointment.date}{" "}
+                </strong>{" "}
+                hrs.
+              </h1>
+              <h1>
+                Status: <strong>{appointment.status}</strong>
+              </h1>
+              <h1>
+                Doctor:{" "}
+                <strong>
+                  {appointment.doctor.lastName}, {appointment.doctor.name}
+                </strong>
+              </h1>
+              <h1>
+                Specialty:{" "}
+                <strong>{appointment.doctor.specialty.specialty}</strong>
               </h1>
             </div>
           </>
         ))}
       </section>
+      {message && (
+        <div className="see-history-cancelations-message">
+          <h1>{message}</h1>
+        </div>
+      )}
     </>
   );
 }

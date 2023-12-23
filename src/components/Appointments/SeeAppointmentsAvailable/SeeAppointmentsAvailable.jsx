@@ -1,10 +1,11 @@
 import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "../../../componentsCSS/Appointments/SeeAppointmentsAvailable/SeeAppointmentsAvailable.css";
 import { CartContext } from "../../context/context";
 export function SeeAppoitmentsAvailable() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { token, userId } = useContext(CartContext);
   const [appointmentsAvailable, setAppointmentsAvailable] = useState([]);
@@ -43,26 +44,11 @@ export function SeeAppoitmentsAvailable() {
       }
     );
     if (response.ok) {
-      toast.success("Reserve Successfully", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      navigate("/");
     } else {
       const data = await response.json();
       const { message } = data;
       setMessage(message);
-      toast.error("Failed to Reserve Appointment", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
     }
   };
 
@@ -91,7 +77,7 @@ export function SeeAppoitmentsAvailable() {
                       <strong>
                         {appointment.day}/{appointment.month}
                       </strong>
-                      <strong>, {appointment.date}</strong>
+                      <strong>, {appointment.date}</strong> hrs.
                     </h2>
                   </div>
                   <Button
