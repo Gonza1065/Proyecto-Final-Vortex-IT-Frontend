@@ -39,23 +39,28 @@ Este proyecto es un sistema de gestión de turnos médicos que permite a los adm
 1. Clona el repositorio:
 
 ```bash
-git clone https://tu-repositorio.git
+git clone https://github.com/Gonza1065/Proyecto-Final-Vortex-IT-Frontend
 ```
 
 ## Frontend
+
 1. **Instala las dependencias:**
+
 ```bash
 cd final-vortex-it
 npm install
 ```
 
 ## Backend
+
 1. **Ejecuta el servidor y la base de datos**
+
 ```bash
 npm start
 ```
 
 ## Tecnologias Utilizadas
+
 - Frontend: ReactJS
 - Backend: Node.js, Express
 - Base de Datos: MongoDB
