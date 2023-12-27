@@ -14,6 +14,15 @@ export function Signup() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !formData.name ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.password
+    ) {
+      setMessage("All fields are required");
+      return;
+    }
     const response = await fetch("http://localhost:5000/api/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

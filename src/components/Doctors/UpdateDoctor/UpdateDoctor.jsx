@@ -9,11 +9,16 @@ export function UpdateDoctor() {
     lastName: "",
     specialty: "",
   });
+  const [message, setMessage] = useState(null);
   const { id } = useParams();
   const { token } = useContext(CartContext);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.lastName || !formData.name || !formData.specialty) {
+      setMessage("All fields are required");
+      return;
+    }
     try {
       const response = await fetch(
         `http://localhost:5000/api/doctors/update-doctor/${id}`,
@@ -26,8 +31,12 @@ export function UpdateDoctor() {
           body: JSON.stringify(formData),
         }
       );
-      if (response) {
+      if (response.ok) {
         navigate("/get-doctors");
+      } else {
+        const data = await response.json();
+        const { message } = data;
+        setMessage(message);
       }
     } catch (err) {
       console.log(err);
@@ -80,6 +89,11 @@ export function UpdateDoctor() {
           <div className="btn-update">
             <Button type="submit">Update Doctor</Button>
           </div>
+          {message && (
+            <div className="update-doctor-message">
+              <h1>{message}</h1>
+            </div>
+          )}
         </form>
       </Container>
     </>

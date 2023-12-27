@@ -15,7 +15,12 @@ export function AddAppointment() {
   const { token } = useContext(CartContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.doctorSpecialty || !formData.date) {
+    if (
+      !formData.doctorSpecialty ||
+      !formData.date ||
+      !formData.day ||
+      !formData.month
+    ) {
       setMessage("All fields are required");
       return;
     }
